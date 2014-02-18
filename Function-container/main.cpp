@@ -24,12 +24,14 @@ int main(int argc, char **argv)
 			assert(str.use_count() == 2);
 		};
 		assert(str.use_count() == 1);
+		function();
 
 		function = [=]() {
 			std::shared_ptr<std::string> str2 = str;
 			assert(str.use_count() == 3);
 		};
 		assert(str.use_count() == 2);
+		function();
 
 		function2 = function;
 		assert(str.use_count() == 3);
